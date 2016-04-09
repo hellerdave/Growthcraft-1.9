@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+GRADLE_OPTS=-Xmx2G gradle $*
