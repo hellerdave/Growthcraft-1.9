@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2015 IceDragon200
+ * Copyright (c) 2016 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,29 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.api.cellar.common;
+package growthcraft.core.bucket;
 
-import growthcraft.api.core.item.EnumDye;
+import javax.annotation.Nonnull;
+
+import growthcraft.core.eventhandler.EventHandlerBucketFill.IBucketEntry;
+import growthcraft.core.GrowthCraftCore;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 
-public class Residue
+public class SaltBucketEntry implements IBucketEntry
 {
-	public final ItemStack residueItem;
-	/**
-	 * How much does this residue need to build up before it creates an item?
-	 * The lower this value, the more it requires, the higher the less.
-	 */
-	public final float pomaceRate;
-
-	public Residue(ItemStack item, float pomace)
+	@Override
+	public ItemStack getItemStack()
 	{
-		this.residueItem = item;
-		this.pomaceRate = pomace;
+		return GrowthCraftCore.proxy.fluids.saltWater.bucket.asStack();
 	}
 
-	public static Residue newDefault(float pomace)
+	@Override
+	public boolean matches(@Nonnull World world, @Nonnull BlockPos pos)
 	{
-		return new Residue(EnumDye.BONEMEAL.asStack(1), pomace);
+		//if (world.getBlockMetadata(pos.getX(), pos.getY(), pos.getZ()) == 0)
+		//{
+			final BiomeGenBase biome = world.getBiomeGenForCoords(pos);
+			if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.OCEAN))
+			{
+				return true;
+			}
+		//}
+		return false;
+	}
+
+	@Override
+	public void commit(@Nonnull World world, @Nonnull BlockPos pos)
+	{
+		world.setBlockToAir(pos);
 	}
 }

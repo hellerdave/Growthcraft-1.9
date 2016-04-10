@@ -24,12 +24,36 @@
 package growthcraft.core.common.module;
 
 import growthcraft.api.core.fluids.GrcFluid;
+import growthcraft.core.bucket.SaltBucketEntry;
+import growthcraft.core.eventhandler.EventHandlerBucketFill;
+import growthcraft.core.GrowthCraftCore;
+import growthcraft.core.util.FluidFactory;
+
+import net.minecraft.util.ResourceLocation;
 
 public class GrcCoreFluids extends GrcModuleFluidsBase
 {
+	public FluidFactory.FluidDetails saltWater;
+
 	@Override
 	public void preInit()
 	{
+		this.saltWater = FluidFactory.instance().create(new GrcFluid("grccore.SaltWater", new ResourceLocation("minecraft:blocks/water_still"), new ResourceLocation("minecraft:blocks/water_flow")));
+		saltWater.setCreativeTab(GrowthCraftCore.creativeTab).setItemColor(0x2C41F6);
+	}
 
+	@Override
+	public void register()
+	{
+		saltWater.registerObjects("grccore", "SaltWater");
+	}
+
+	@Override
+	public void init()
+	{
+		if (GrowthCraftCore.proxy.config.bucketOfOceanSaltWater)
+		{
+			EventHandlerBucketFill.instance().register(new SaltBucketEntry());
+		}
 	}
 }

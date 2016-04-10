@@ -82,7 +82,7 @@ public class StreamUtils
 		}
 		final int fluidAmount = stream.readInt();
 
-		final Fluid fluid = fluidName != "" ? FluidRegistry.getFluid(fluidName) : null;
+		final Fluid fluid = fluidName.equals("") ? null : FluidRegistry.getFluid(fluidName);
 		final FluidStack fluidStack = fluid != null ? new FluidStack(fluid, fluidAmount) : null;
 
 		tank.setCapacity(capacity);

@@ -30,11 +30,9 @@ import javax.annotation.Nonnull;
 import growthcraft.api.core.log.ILoggable;
 import growthcraft.api.core.log.ILogger;
 import growthcraft.api.core.log.NullLogger;
-import growthcraft.core.GrowthCraftCore;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
@@ -101,6 +99,7 @@ public class EventHandlerBucketFill implements ILoggable
 	public void register(@Nonnull IBucketEntry entry)
 	{
 		buckets.add(entry);
+		logger.debug("Adding new BucketEntry entry=%s", entry);
 	}
 
 	public void register(@Nonnull Block block, @Nonnull ItemStack stack)

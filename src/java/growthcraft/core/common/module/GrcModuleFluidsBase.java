@@ -23,9 +23,6 @@
  */
 package growthcraft.core.common.module;
 
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 public class GrcModuleFluidsBase extends GrcModuleBase
 {
 

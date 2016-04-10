@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
@@ -40,9 +41,10 @@ public class FluidUtils
 {
 	private FluidUtils() {}
 
-	/*public static FluidStack drainFluidBlock(World world, BlockPos pos, boolean doDrain)
+	public static FluidStack drainFluidBlock(World world, BlockPos pos, boolean doDrain)
 	{
-		final Block block = world.getBlock(pos);
+		final IBlockState state = world.getBlockState(pos);
+		final Block block = state.getBlock();
 		if (block instanceof BlockFluidBase)
 		{
 			final BlockFluidBase bfb = (BlockFluidBase)block;
@@ -59,7 +61,7 @@ public class FluidUtils
 			return new FluidStack(FluidRegistry.WATER, FluidContainerRegistry.BUCKET_VOLUME);
 		}
 		return null;
-	}*/
+	}
 
 	public static List<Fluid> getFluidsByNames(List<String> names)
 	{
