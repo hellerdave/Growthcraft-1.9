@@ -25,6 +25,8 @@ package growthcraft.core.registry;
 
 import javax.annotation.Nonnull;
 
+import growthcraft.api.core.effect.IEffectRegistry;
+import growthcraft.api.core.effect.IPotionEffectFactoryRegistry;
 import growthcraft.api.core.fluids.FluidDictionary;
 import growthcraft.api.core.fluids.FluidTagsRegistry;
 import growthcraft.api.core.fluids.IFluidDictionary;
@@ -36,7 +38,7 @@ import growthcraft.api.core.log.ILogger;
 import growthcraft.api.core.log.NullLogger;
 import growthcraft.api.core.vines.IVineDropRegistry;
 
-public class CoreRegistry implements ILoggable
+public class CoreRegistry implements ILoggable, ICoreRegistry
 {
 	private static final CoreRegistry instance = new CoreRegistry();
 

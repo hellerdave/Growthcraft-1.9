@@ -24,41 +24,52 @@
 package growthcraft.core.common.item;
 
 import growthcraft.api.core.item.IFluidItem;
-//import growthcraft.core.util.UnitFormatter;
 
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * Generic fluid bucket code
+ * Generic fluid bottle for growthcraft fluids that are edible
  */
-public class ItemBucketFluid extends GrcItemBucketBase implements IFluidItem
+public class ItemFoodBottleFluid extends GrcItemFoodBase implements IFluidItem
 {
 	private Fluid fluid;
-	private int index;
 	// Used to override the fluid color
 	private int color = -1;
 
-	public ItemBucketFluid(Block block, Fluid flu, CreativeTabs creativeTab)
+	public ItemFoodBottleFluid(Fluid flu, int healAmount, float saturation, boolean isWolfFavouriteFood)
 	{
-		super(block);
-		setContainerItem(Items.bucket);
-		setCreativeTab(creativeTab);
+		super(healAmount, saturation, isWolfFavouriteFood);
+		setContainerItem(Items.glass_bottle);
 		this.fluid = flu;
 	}
 
+	public ItemFoodBottleFluid(Fluid flu, int healAmount, float saturation)
+	{
+		this(flu, healAmount, saturation, false);
+	}
+
+	public ItemFoodBottleFluid(Fluid flu, int healAmount)
+	{
+		this(flu, healAmount, 0.0f);
+	}
+
+	public ItemFoodBottleFluid(Fluid flu)
+	{
+		this(flu, 0);
+	}
+
 	@Override
-	public Fluid getFluid(ItemStack _stack)
+	public Fluid getFluid(ItemStack stack)
 	{
 		return fluid;
 	}
 
-	public ItemBucketFluid setColor(int c)
+	public ItemFoodBottleFluid setColor(int c)
 	{
 		this.color = c;
 		return this;
@@ -70,16 +81,10 @@ public class ItemBucketFluid extends GrcItemBucketBase implements IFluidItem
 		return getFluid(stack).getColor();
 	}
 
-	//@Override
-	//public String getItemStackDisplayName(ItemStack stack)
-	//{
-	//	//return UnitFormatter.fluidBucketName(getFluid(stack));
-	//}
-
 	@Override
 	@SideOnly(Side.CLIENT)
 	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
-		return pass == 1 ? getColor(stack) : 0xFFFFFF;
+		return pass == 0 ? getColor(stack) : 0xFFFFFF;
 	}
 }

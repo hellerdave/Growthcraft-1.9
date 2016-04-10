@@ -23,13 +23,16 @@
  */
 package growthcraft.core.util;
 
+import growthcraft.api.core.log.ILoggable;
+import growthcraft.api.core.log.ILogger;
+import growthcraft.api.core.log.NullLogger;
 import growthcraft.api.core.util.NumUtils;
 import growthcraft.api.core.util.ObjectUtils;
 import growthcraft.core.common.definition.FluidDefinition;
 import growthcraft.core.common.definition.GrcBlockFluidDefinition;
 import growthcraft.core.common.definition.ItemTypeDefinition;
-import growthcraft.core.common.item.ItemBucketFluid;
 import growthcraft.core.common.item.ItemBottleFluid;
+import growthcraft.core.common.item.ItemBucketFluid;
 import growthcraft.core.common.item.ItemFoodBottleFluid;
 import growthcraft.core.eventhandler.EventHandlerBucketFill;
 import growthcraft.core.GrowthCraftCore;
@@ -44,7 +47,7 @@ import net.minecraftforge.fluids.FluidStack;
 /**
  * A simple factory for creating generic fluid bottles, blocks etc..
  */
-public class FluidFactory
+public class FluidFactory implements ILoggable
 {
 	public static class FluidDetails
 	{
@@ -119,33 +122,33 @@ public class FluidFactory
 		{
 			if (block != null)
 			{
-				block.getBlock().setBlockName(prefix + ".BlockFluid" + basename);
-				block.register(prefix + ".BlockFluid" + basename);
+				block.getBlock().setUnlocalizedName(prefix + ".block_fluid" + basename);
+				block.register(prefix + ".block_fluid" + basename);
 			}
 			if (bottle != null)
 			{
-				bottle.getItem().setUnlocalizedName(prefix + ".BottleFluid" + basename);
-				bottle.register(prefix + ".BottleFluid" + basename);
-				final FluidStack fluidStack = fluid.asFluidStack(GrowthCraftCore.getConfig().bottleCapacity);
-				FluidContainerRegistry.registerFluidContainer(fluidStack, bottle.asStack(1), GrowthCraftCore.EMPTY_BOTTLE);
+				bottle.getItem().setUnlocalizedName(prefix + ".bottle_fluid" + basename);
+				bottle.register(prefix + ".bottle_fluid" + basename);
+				final FluidStack fluidStack = fluid.asFluidStack(GrowthCraftCore.proxy.config.bottleCapacity);
+				FluidContainerRegistry.registerFluidContainer(fluidStack, bottle.asStack(1), FluidContainerRegistry.EMPTY_BOTTLE);
 			}
 			if (foodBottle != null)
 			{
-				foodBottle.getItem().setUnlocalizedName(prefix + ".FoodBottleFluid" + basename);
-				foodBottle.register(prefix + ".BottleFluid" + basename);
-				final FluidStack fluidStack = fluid.asFluidStack(GrowthCraftCore.getConfig().bottleCapacity);
-				FluidContainerRegistry.registerFluidContainer(fluidStack, foodBottle.asStack(1), GrowthCraftCore.EMPTY_BOTTLE);
+				foodBottle.getItem().setUnlocalizedName(prefix + ".food_bottle_fluid" + basename);
+				foodBottle.register(prefix + ".bottle_fluid" + basename);
+				final FluidStack fluidStack = fluid.asFluidStack(GrowthCraftCore.proxy.config.bottleCapacity);
+				FluidContainerRegistry.registerFluidContainer(fluidStack, foodBottle.asStack(1), FluidContainerRegistry.EMPTY_BOTTLE);
 			}
 			if (bucket != null)
 			{
-				bucket.getItem().setUnlocalizedName(prefix + ".BucketFluid" + basename);
-				bucket.register(prefix + ".BucketFluid" + basename);
+				bucket.getItem().setUnlocalizedName(prefix + ".bucket_fluid" + basename);
+				bucket.register(prefix + ".bucket_fluid" + basename);
 				final FluidStack boozeStack = fluid.asFluidStack(FluidContainerRegistry.BUCKET_VOLUME);
 				FluidContainerRegistry.registerFluidContainer(boozeStack, bucket.asStack(), FluidContainerRegistry.EMPTY_BUCKET);
 			}
 			if (block != null && bucket != null)
 			{
-				EventHandlerBucketFill.instance().register(block.getBlock(), bucket.getItem());
+				EventHandlerBucketFill.instance().register(block.getBlock(), bucket.asStack());
 			}
 			return this;
 		}
@@ -170,7 +173,8 @@ public class FluidFactory
 
 		public FluidDetails setBlockColor(int color)
 		{
-			if (block != null) block.getBlock().setColor(color);
+			FluidFactory.instance().logger.warn("Block Colors are not yet implemented");
+			//if (block != null) block.getBlock().setColor(color);
 			return this;
 		}
 
@@ -198,11 +202,19 @@ public class FluidFactory
 	public static final int FEATURE_ALL_NON_EDIBLE = FEATURE_BLOCK | FEATURE_BOTTLE | FEATURE_BUCKET;
 	public static final int FEATURE_ALL_EDIBLE = FEATURE_BLOCK | FEATURE_FOOD_BOTTLE | FEATURE_BUCKET;
 	private static FluidFactory INSTANCE = new FluidFactory();
+	protected ILogger logger = NullLogger.INSTANCE;
 
 	public FluidFactory() {}
 
+	public void setLogger(ILogger l)
+	{
+		this.logger = l;
+	}
+
 	public FluidDetails create(Fluid fluid, int features)
 	{
+		logger.debug("Creating new FluidDetails for fluid=%s features=%08s", fluid, Integer.toBinaryString(features));
+
 		final FluidDetails details = new FluidDetails();
 		details.fluid = new FluidDefinition(fluid);
 		details.fluid.register();

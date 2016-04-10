@@ -23,63 +23,31 @@
  */
 package growthcraft.core.common.item;
 
-import growthcraft.api.core.item.IFluidItem;
-//import growthcraft.core.util.UnitFormatter;
+import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-/**
- * Generic fluid bucket code
- */
-public class ItemBucketFluid extends GrcItemBucketBase implements IFluidItem
+public class GrcItemFoodBase extends ItemFood
 {
-	private Fluid fluid;
-	private int index;
-	// Used to override the fluid color
-	private int color = -1;
-
-	public ItemBucketFluid(Block block, Fluid flu, CreativeTabs creativeTab)
+	public GrcItemFoodBase(int hunger, float saturation, boolean isWolfFav)
 	{
-		super(block);
-		setContainerItem(Items.bucket);
-		setCreativeTab(creativeTab);
-		this.fluid = flu;
+		super(hunger, saturation, isWolfFav);
 	}
 
-	@Override
-	public Fluid getFluid(ItemStack _stack)
+	public GrcItemFoodBase(int hunger, boolean isWolfFav)
 	{
-		return fluid;
+		super(hunger, isWolfFav);
 	}
-
-	public ItemBucketFluid setColor(int c)
-	{
-		this.color = c;
-		return this;
-	}
-
-	public int getColor(ItemStack stack)
-	{
-		if (color != -1) return color;
-		return getFluid(stack).getColor();
-	}
-
-	//@Override
-	//public String getItemStackDisplayName(ItemStack stack)
-	//{
-	//	//return UnitFormatter.fluidBucketName(getFluid(stack));
-	//}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int pass)
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced)
 	{
-		return pass == 1 ? getColor(stack) : 0xFFFFFF;
+		super.addInformation(stack, player, list, advanced);
+		GrcItemBase.addDescription(this, stack, player, list, advanced);
 	}
 }

@@ -23,8 +23,10 @@
  */
 package growthcraft.core;
 
-import growthcraft.core.lib.GrcCoreConst;
+import growthcraft.api.core.GrcCoreApi;
 import growthcraft.core.common.CommonProxy;
+import growthcraft.core.lib.GrcCoreConst;
+import growthcraft.core.util.FluidFactory;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -61,7 +63,8 @@ public class GrowthCraftCore
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-
+		FluidFactory.instance().setLogger(proxy.logger);
+		GrcCoreApi.instance().setLogger(proxy.logger);
 		proxy.preInit(event);
 	}
 

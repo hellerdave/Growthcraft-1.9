@@ -31,13 +31,16 @@ import growthcraft.core.common.module.GrcCoreFluids;
 import growthcraft.core.common.module.GrcCoreItems;
 import growthcraft.core.common.module.GrcCoreRecipes;
 import growthcraft.core.lib.GrcCoreConst;
+import growthcraft.core.eventhandler.EventHandlerBucketFill;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CommonProxy
 {
+	public final GrcCoreConfig config = new GrcCoreConfig();
 	public final GrcCoreBlocks blocks = new GrcCoreBlocks();
 	public final GrcCoreItems items = new GrcCoreItems();
 	public final GrcCoreFluids fluids = new GrcCoreFluids();
@@ -47,6 +50,7 @@ public class CommonProxy
 
 	public CommonProxy()
 	{
+		config.setLogger(logger);
 		modules.add(blocks);
 		modules.add(items);
 		modules.add(fluids);
@@ -72,5 +76,6 @@ public class CommonProxy
 	public void postInit(FMLPostInitializationEvent event)
 	{
 		modules.postInit();
+		MinecraftForge.EVENT_BUS.register(EventHandlerBucketFill.instance());
 	}
 }

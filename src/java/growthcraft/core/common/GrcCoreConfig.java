@@ -21,29 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.registry;
+package growthcraft.core.common;
 
-import javax.annotation.Nonnull;
+import growthcraft.core.ConfigBase;
 
-import growthcraft.api.core.effect.IPotionEffectFactory;
-import growthcraft.api.core.effect.IPotionEffectFactoryRegistry;
-import growthcraft.api.core.log.ILogger;
-import growthcraft.api.core.log.NullLogger;
-
-import net.minecraft.nbt.NBTTagCompound;
-
-public class PotionEffectFactoryRegistry extends AbstractClassRegistry<IPotionEffectFactory> implements IPotionEffectFactoryRegistry
+public class GrcCoreConfig extends ConfigBase
 {
-	private ILogger logger = NullLogger.INSTANCE;
+	@ConfigOption(catergory="Minecraft/Debug", name="Enable Game Registry Dump", desc="Should Growthcraft dump the GameRegistry and FluidRegistry to text files?")
+	public boolean dumpGameRegistry;
 
-	public void setLogger(@Nonnull ILogger l)
-	{
-		this.logger = l;
-	}
 
-	@Override
-	public IPotionEffectFactory loadPotionEffectFactoryFromNBT(@Nonnull NBTTagCompound data, @Nonnull String name)
-	{
-		return loadObjectFromNBT(data, name);
-	}
+	@ConfigOption(catergory="Salt", name="Bucket Ocean Salt Water", desc="Should we enable the bucket of salt water event handler?")
+	public boolean bucketOfOceanSaltWater;
+
+
+	@ConfigOption(catergory="Fluid Container", name="Bottle Capacity", desc="How much booze does a bottle hold?")
+	public int bottleCapacity = 333;
 }

@@ -23,7 +23,7 @@
  */
 package growthcraft.core.common.module;
 
-import growthcraft.api.core.GrcFluid;
+import growthcraft.api.core.fluids.GrcFluid;
 
 public class GrcCoreFluids extends GrcModuleFluidsBase
 {

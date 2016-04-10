@@ -21,29 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.registry;
+package growthcraft.api.core.item;
 
-import javax.annotation.Nonnull;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 
-import growthcraft.api.core.effect.IPotionEffectFactory;
-import growthcraft.api.core.effect.IPotionEffectFactoryRegistry;
-import growthcraft.api.core.log.ILogger;
-import growthcraft.api.core.log.NullLogger;
-
-import net.minecraft.nbt.NBTTagCompound;
-
-public class PotionEffectFactoryRegistry extends AbstractClassRegistry<IPotionEffectFactory> implements IPotionEffectFactoryRegistry
+public interface IFluidItem
 {
-	private ILogger logger = NullLogger.INSTANCE;
-
-	public void setLogger(@Nonnull ILogger l)
-	{
-		this.logger = l;
-	}
-
-	@Override
-	public IPotionEffectFactory loadPotionEffectFactoryFromNBT(@Nonnull NBTTagCompound data, @Nonnull String name)
-	{
-		return loadObjectFromNBT(data, name);
-	}
+	Fluid getFluid(ItemStack stack);
 }

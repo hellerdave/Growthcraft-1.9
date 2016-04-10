@@ -33,6 +33,7 @@ import growthcraft.api.core.effect.EffectRandomList;
 import growthcraft.api.core.effect.EffectRemovePotionEffect;
 import growthcraft.api.core.effect.EffectWeightedRandomList;
 import growthcraft.api.core.effect.IEffect;
+import growthcraft.api.core.effect.IEffectRegistry;
 import growthcraft.api.core.log.ILogger;
 import growthcraft.api.core.log.NullLogger;
 

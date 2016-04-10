@@ -32,8 +32,10 @@ import javax.annotation.Nullable;
 
 import growthcraft.api.core.log.ILogger;
 import growthcraft.api.core.log.NullLogger;
+import growthcraft.api.core.vines.IVineEntry;
 import growthcraft.api.core.vines.IVineDropRegistry;
 import growthcraft.api.core.vines.VineDropEntry;
+import growthcraft.api.core.vines.VineEntry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -124,7 +126,7 @@ public class VineDropRegistry implements IVineDropRegistry
 		final List<VineDropEntry> vineEntries = getVineDropsList();
 		if (vineEntries.isEmpty()) return null;
 
-		final VineDropEntry entry = (VineDropEntry)WeightedRandom.getRandomItem(world.rand, vineEntries);
+		final VineDropEntry entry = WeightedRandom.getRandomItem(world.rand, vineEntries);
 		if (entry == null || entry.getItemStack() == null) return null;
 
 		return entry.getItemStack().copy();
