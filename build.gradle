@@ -20,13 +20,13 @@ buildscript {
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: "checkstyle"
+apply plugin: 'net.minecraftforge.gradle.forge'
 
-checkstyle {
-    toolVersion = "6.11.2"
-    configFile = new File(rootDir, "config/checkstyle/checkstyle.xml")
-}
+//checkstyle {
+//    toolVersion = "6.17"
+//    configFile = new File(rootDir, "config/checkstyle/checkstyle.xml")
+//}
 
 sourceCompatibility = JavaVersion.VERSION_1_7
 targetCompatibility = JavaVersion.VERSION_1_7
@@ -129,6 +129,7 @@ javadoc {
     failOnError = false
 }
 
+/*
 // add a javadoc jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = "javadoc"
@@ -163,4 +164,7 @@ jar {
     into("thaumcraft/api") {
         from project.thaumcraftApi + "/LICENSE"
     }
-}
+}*/
+
+// make sure all of these happen when we run build
+//build.dependsOn sourceJar, javadocJar, deobfJar, apiJar

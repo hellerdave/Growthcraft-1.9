@@ -21,59 +21,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core;
+package growthcraft.core.common;
 
+import growthcraft.api.core.log.GrcLogger;
+import growthcraft.api.core.log.ILogger;
+import growthcraft.api.core.module.ModuleContainer;
+import growthcraft.core.common.module.GrcCoreBlocks;
+import growthcraft.core.common.module.GrcCoreFluids;
+import growthcraft.core.common.module.GrcCoreItems;
 import growthcraft.core.lib.GrcCoreConst;
-import growthcraft.core.common.CommonProxy;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(
-	modid = GrcCoreConst.MODID,
-	name = GrcCoreConst.NAME,
-	dependencies = GrcCoreConst.DEPENDENCIES,
-	acceptedMinecraftVersions = GrcCoreConst.MINECRAFT_VERSION,
-	version = GrcCoreConst.VERSION
-)
-public class GrowthCraftCore
+public class CommonProxy
 {
-	@Mod.Instance(GrcCoreConst.MODID)
-	public static GrowthCraftCore instance;
-	@SidedProxy(clientSide = "growthcraft.core.client.ClientProxy", serverSide = "growthcraft.core.server.ServerProxy")
-	public static CommonProxy proxy;
-	public static CreativeTabs creativeTab = new CreativeTabs("grccore_creative_tab") {
-		@SideOnly(Side.CLIENT)
-		public Item getTabIconItem()
-		{
-			return Item.getItemFromBlock(Blocks.sapling);
-		}
-	};
+	public final GrcCoreBlocks blocks = new GrcCoreBlocks();
+	public final GrcCoreItems items = new GrcCoreItems();
+	public final GrcCoreFluids fluids = new GrcCoreFluids();
+	public final ILogger logger = new GrcLogger(GrcCoreConst.MODID);
+	private final ModuleContainer modules = new ModuleContainer();
 
-	@Mod.EventHandler
+	public CommonProxy()
+	{
+		modules.add(blocks);
+		modules.add(items);
+		modules.add(fluids);
+	}
+
 	public void preInit(FMLPreInitializationEvent event)
 	{
-
-		proxy.preInit(event);
+		modules.preInit();
+		modules.register();
 	}
 
-	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		proxy.init(event);
+		modules.init();
 	}
 
-	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
-		proxy.postInit(event);
+		modules.postInit();
 	}
 }
