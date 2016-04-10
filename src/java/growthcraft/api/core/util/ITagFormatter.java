@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015, 2016 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.List;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.nbt.NBTTagCompound;
+
+/**
+ * Allows formatter interfaces, look at TagFormatterFluidHandler for an example
+ */
+public interface ITagFormatter
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	public List<String> format(List<String> list, NBTTagCompound tag);
 }

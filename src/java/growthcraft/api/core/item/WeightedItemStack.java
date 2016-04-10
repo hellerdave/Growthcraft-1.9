@@ -21,15 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.item;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandom;
+
+public class WeightedItemStack extends WeightedRandom.Item
 {
-	@Override
-	public void preInit()
-	{
+	public final ItemStack itemStack;
+	private ItemKey key;
 
+	public WeightedItemStack(int weight, @Nonnull ItemStack stack)
+	{
+		super(weight <= 0 ? 1 : weight);
+		this.itemStack = stack;
+		this.key = new ItemKey(itemStack);
+	}
+
+	@Override
+	public int hashCode()
+	{
+		return key.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object other)
+	{
+		if (other instanceof WeightedItemStack)
+		{
+			return hashCode() == other.hashCode();
+		}
+		return false;
 	}
 }

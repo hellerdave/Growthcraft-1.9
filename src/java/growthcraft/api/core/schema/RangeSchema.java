@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.schema;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class RangeSchema implements ICommentable
 {
-	@Override
-	public void preInit()
-	{
+	public String comment = "";
+	public int min;
+	public int max;
 
+	public RangeSchema(int n, int x)
+	{
+		this.min = n;
+		this.max = x;
+	}
+
+	public RangeSchema() {}
+
+	@Override
+	public String getComment()
+	{
+		return comment;
+	}
+
+	@Override
+	public void setComment(String com)
+	{
+		this.comment = com;
 	}
 }

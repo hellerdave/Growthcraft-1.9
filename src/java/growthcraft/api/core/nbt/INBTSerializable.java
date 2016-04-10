@@ -21,15 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.nbt;
 
-import growthcraft.api.core.GrcFluid;
+import net.minecraft.nbt.NBTTagCompound;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public interface INBTSerializable
 {
-	@Override
-	public void preInit()
-	{
+	/**
+	 * @param data - tag compound to read from
+	 */
+	void readFromNBT(NBTTagCompound data);
 
-	}
+	/**
+	 * @param data - tag compound to write to
+	 */
+	void writeToNBT(NBTTagCompound data);
 }

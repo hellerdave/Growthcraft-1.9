@@ -21,15 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.effect;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.common.IClassRegistry;
+import growthcraft.api.core.log.ILoggable;
+
+import net.minecraft.nbt.NBTTagCompound;
+
+public interface IPotionEffectFactoryRegistry extends IClassRegistry<IPotionEffectFactory>, ILoggable
 {
-	@Override
-	public void preInit()
-	{
+	/**
+	 * Loads a IPotionEffectFactory instance from the given NBT data and key name.
+	 *
+	 * @param data - nbt data to load
+	 * @param name - tag to load
+	 * @return potion effect factory
+	 */
+	IPotionEffectFactory loadPotionEffectFactoryFromNBT(@Nonnull NBTTagCompound data, @Nonnull String name);
 
-	}
 }

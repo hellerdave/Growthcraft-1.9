@@ -23,13 +23,18 @@
  */
 package growthcraft.core.common.module;
 
-import growthcraft.api.core.GrcFluid;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class GrcModuleRecipesBase extends GrcModuleBase
 {
-	@Override
-	public void preInit()
+	public void addShapedRecipe(ItemStack stack, Object... params)
 	{
+		GameRegistry.addShapedRecipe(stack, params);
+	}
 
+	public void addShapelessRecipe(ItemStack stack, Object... params)
+	{
+		GameRegistry.addShapelessRecipe(stack, params);
 	}
 }

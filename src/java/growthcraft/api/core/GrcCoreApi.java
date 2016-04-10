@@ -21,15 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class GrcCoreApi
 {
-	@Override
-	public void preInit()
-	{
+	public static ICoreRegistry registry;
 
+	private GrcCoreApi() {}
+
+	public static ICoreRegistry instance()
+	{
+		return registry;
 	}
 }

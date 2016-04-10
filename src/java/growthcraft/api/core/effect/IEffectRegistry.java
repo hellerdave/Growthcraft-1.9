@@ -21,15 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.effect;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.common.IClassRegistry;
+import growthcraft.api.core.log.ILoggable;
+
+import net.minecraft.nbt.NBTTagCompound;
+
+public interface IEffectRegistry extends IClassRegistry<IEffect>, ILoggable
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	/**
+	 * @param data  - nbt data to load
+	 * @param name  - tag to load
+	 * @return name
+	 */
+	IEffect loadEffectFromNBT(@Nonnull NBTTagCompound data, @Nonnull String name);
 }

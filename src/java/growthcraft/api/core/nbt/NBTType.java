@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015, 2016 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.nbt;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.Map;
+import java.util.HashMap;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public enum NBTType
 {
-	@Override
-	public void preInit()
-	{
+	END(0),
+	BYTE(1),
+	SHORT(2),
+	INT(3),
+	LONG(4),
+	FLOAT(5),
+	DOUBLE(6),
+	BYTE_ARRAY(7),
+	STRING(8),
+	LIST(9),
+	COMPOUND(10),
+	INT_ARRAY(11);
 
+	public static final Map<Integer, NBTType> MAPPING = new HashMap<Integer, NBTType>();
+	static
+	{
+		END.register();
+		BYTE.register();
+		SHORT.register();
+		INT.register();
+		LONG.register();
+		FLOAT.register();
+		DOUBLE.register();
+		BYTE_ARRAY.register();
+		STRING.register();
+		LIST.register();
+		COMPOUND.register();
+		INT_ARRAY.register();
+	}
+
+	public final int id;
+
+	private NBTType(int i)
+	{
+		this.id = i;
+	}
+
+	private void register()
+	{
+		MAPPING.put(this.id, this);
+	}
+
+	public static NBTType byId(int id)
+	{
+		return MAPPING.get(id);
 	}
 }

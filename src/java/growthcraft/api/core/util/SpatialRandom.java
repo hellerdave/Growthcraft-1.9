@@ -21,15 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.Random;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.util.Tuple;
+
+public class SpatialRandom
 {
-	@Override
-	public void preInit()
-	{
+	private Random random;
 
+	public SpatialRandom(Random rand)
+	{
+		this.random = rand;
+	}
+
+	public SpatialRandom()
+	{
+		this(new Random());
+	}
+
+	public Tuple<Double, Double> nextD2()
+	{
+		return new Tuple<Double, Double>(random.nextDouble(), random.nextDouble());
+	}
+
+	public Tuple<Double, Double> nextCenteredD2()
+	{
+		return new Tuple<Double, Double>(random.nextDouble() - 0.5, random.nextDouble() - 0.5);
+	}
+
+	public Triplet<Double, Double, Double> nextD3()
+	{
+		return new Triplet<Double, Double, Double>(random.nextDouble(), random.nextDouble(), random.nextDouble());
 	}
 }

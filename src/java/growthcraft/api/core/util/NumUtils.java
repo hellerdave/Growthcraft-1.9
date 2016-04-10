@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015, 2016 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,51 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class NumUtils
 {
-	@Override
-	public void preInit()
-	{
+	private NumUtils() {}
 
+	public static boolean isFlagged(int src, int flag)
+	{
+		return (src & flag) == flag;
+	}
+
+	public static int roundedBlocks(int num, int blocksize)
+	{
+		int n = num / blocksize;
+		if (n < num) n += blocksize;
+		return n;
+	}
+
+	public static int closestPowerOf2(int num)
+	{
+		int start = 1;
+		while (start < num)
+		{
+			start *= 2;
+		}
+		return start;
+	}
+
+	public static boolean between(int num, int bot, int top)
+	{
+		return num >= bot && num <= top;
+	}
+
+	public static int[] newIntRangeArray(int start, int length)
+	{
+		final int[] result = new int[length];
+		for (int i = 0; i < result.length; ++i)
+		{
+			result[i] = start + i;
+		}
+		return result;
+	}
+
+	public static int[] newIndexArray(int length)
+	{
+		return newIntRangeArray(0, length);
 	}
 }

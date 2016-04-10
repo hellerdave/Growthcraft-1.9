@@ -21,15 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.fluids.user;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.ArrayList;
+import java.util.List;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.schema.ICommentable;
+
+public class UserFluidDictionaryEntries implements ICommentable
 {
-	@Override
-	public void preInit()
-	{
+	public String comment = "";
+	public List<UserFluidDictionaryEntry> data = new ArrayList<UserFluidDictionaryEntry>();
 
+	@Override
+	public String getComment()
+	{
+		return comment;
+	}
+
+	@Override
+	public void setComment(String com)
+	{
+		this.comment = com;
 	}
 }

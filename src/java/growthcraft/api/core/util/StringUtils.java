@@ -21,15 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class StringUtils
 {
-	@Override
-	public void preInit()
-	{
+	private StringUtils() {}
 
+	public static String capitalize(String str)
+	{
+		if (str.length() <= 1)
+		{
+			return str.toUpperCase();
+		}
+		else
+		{
+			return str.substring(0, 1).toUpperCase() + str.substring(1);
+		}
 	}
 }

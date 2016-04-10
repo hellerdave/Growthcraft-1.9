@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.effect;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.Random;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.description.IDescribable;
+import growthcraft.api.core.nbt.INBTSerializableContext;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
+
+/**
+ * Objects that implement this interface are expected to create PotionEffects
+ * given certain parameters
+ */
+public interface IPotionEffectFactory extends IDescribable, INBTSerializableContext
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	PotionEffect createPotionEffect(World world, Entity entity, Random random, Object data);
 }

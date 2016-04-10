@@ -25,7 +25,7 @@ package growthcraft.core.lib;
 
 public class GrcCoreConst
 {
-	public static final String MODID = "GrowthCraftCore";
+	public static final String MODID = "GrowthCraft-Core";
 	public static final String NAME = "GrowthCraft Core";
 	public static final String DEPENDENCIES = "";
 	public static final String MINECRAFT_VERSION = "[1.8.9]";

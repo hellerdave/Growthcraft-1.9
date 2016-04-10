@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015, 2016 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+/**
+ * Place any "Magic Numbers" in this class, so we don't have to play the
+ * guessing game while reading
+ */
+public final class ConstID
 {
-	@Override
-	public void preInit()
-	{
+	// Used for handling non existant fluids
+	public static final int NO_FLUID = 0;
+	// Used for handling non existant items
+	public static final int NO_ITEM = 0;
 
-	}
+	private ConstID() {}
 }

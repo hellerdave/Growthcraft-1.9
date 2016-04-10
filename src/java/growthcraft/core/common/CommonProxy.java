@@ -29,6 +29,7 @@ import growthcraft.api.core.module.ModuleContainer;
 import growthcraft.core.common.module.GrcCoreBlocks;
 import growthcraft.core.common.module.GrcCoreFluids;
 import growthcraft.core.common.module.GrcCoreItems;
+import growthcraft.core.common.module.GrcCoreRecipes;
 import growthcraft.core.lib.GrcCoreConst;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -40,6 +41,7 @@ public class CommonProxy
 	public final GrcCoreBlocks blocks = new GrcCoreBlocks();
 	public final GrcCoreItems items = new GrcCoreItems();
 	public final GrcCoreFluids fluids = new GrcCoreFluids();
+	public final GrcCoreRecipes recipes = new GrcCoreRecipes();
 	public final ILogger logger = new GrcLogger(GrcCoreConst.MODID);
 	private final ModuleContainer modules = new ModuleContainer();
 
@@ -48,12 +50,18 @@ public class CommonProxy
 		modules.add(blocks);
 		modules.add(items);
 		modules.add(fluids);
+		modules.add(recipes);
+	}
+
+	protected void doPreInit()
+	{
 	}
 
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		modules.preInit();
 		modules.register();
+		doPreInit();
 	}
 
 	public void init(FMLInitializationEvent event)

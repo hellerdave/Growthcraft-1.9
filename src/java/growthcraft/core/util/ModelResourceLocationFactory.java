@@ -21,15 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.core.util;
 
-import growthcraft.api.core.GrcFluid;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+@SideOnly(Side.CLIENT)
+public class ModelResourceLocationFactory
 {
-	@Override
-	public void preInit()
-	{
+	protected final String prefix;
 
+	public ModelResourceLocationFactory(String pPrefix)
+	{
+		this.prefix = pPrefix;
+	}
+
+	public ModelResourceLocation create(String name, String sub)
+	{
+		return new ModelResourceLocation(prefix + ":" + name, sub);
+	}
+
+	public ModelResourceLocation create(String name)
+	{
+		return new ModelResourceLocation(prefix + ":" + name);
 	}
 }

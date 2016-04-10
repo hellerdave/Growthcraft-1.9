@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+/**
+ * Constant space for block flags, use these instead of magic numbers
+ */
+public final class BlockFlags
 {
-	@Override
-	public void preInit()
-	{
+	// Cause the block to update
+	public static final int BLOCK_UPDATE = 1;
+	// Send change to clients
+	public static final int SYNC = 2;
+	// Stop the block from re-rendering
+	public static final int SUPRESS_RENDER = 4;
 
-	}
+	public static final int UPDATE_AND_SYNC = BLOCK_UPDATE | SYNC;
+	public static final int ALL = UPDATE_AND_SYNC | SUPRESS_RENDER;
+
+	private BlockFlags() {}
 }

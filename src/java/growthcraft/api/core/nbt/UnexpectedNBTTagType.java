@@ -21,15 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.nbt;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+/**
+ * Exception thrown when a specific tag type is expected and another is encountered instead.
+ */
+public class UnexpectedNBTTagType extends RuntimeException
 {
-	@Override
-	public void preInit()
-	{
+	public static final long serialVersionUID = 1L;
 
+	public UnexpectedNBTTagType(String msg)
+	{
+		super(msg);
+	}
+
+	public UnexpectedNBTTagType() {}
+
+	public static UnexpectedNBTTagType createFor(Object expected, Object actual)
+	{
+		return new UnexpectedNBTTagType("Wrong NBT Tag type `" + actual + "` (expected `" + expected + "`)");
 	}
 }

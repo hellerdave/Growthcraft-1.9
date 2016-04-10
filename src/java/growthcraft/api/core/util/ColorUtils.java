@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015, 2016 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class ColorUtils
 {
-	@Override
-	public void preInit()
-	{
+	private ColorUtils() {}
 
+	public static float[] rgb24FloatArray(float[] array, int rgb24)
+	{
+		assert array.length == 3;
+		array[0] = (float)(rgb24 >> 16 & 255) / 255.0F;
+		array[1] = (float)(rgb24 >> 8 & 255) / 255.0F;
+		array[2] = (float)(rgb24 & 255) / 255.0F;
+		return array;
 	}
 }

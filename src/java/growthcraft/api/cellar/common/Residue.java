@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.cellar.common;
 
-import growthcraft.api.core.GrcFluid;
+import growthcraft.api.core.item.EnumDye;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
+
+public class Residue
 {
-	@Override
-	public void preInit()
-	{
+	public final ItemStack residueItem;
+	/**
+	 * How much does this residue need to build up before it creates an item?
+	 * The lower this value, the more it requires, the higher the less.
+	 */
+	public final float pomaceRate;
 
+	public Residue(ItemStack item, float pomace)
+	{
+		this.residueItem = item;
+		this.pomaceRate = pomace;
+	}
+
+	public static Residue newDefault(float pomace)
+	{
+		return new Residue(EnumDye.BONEMEAL.asStack(1), pomace);
 	}
 }

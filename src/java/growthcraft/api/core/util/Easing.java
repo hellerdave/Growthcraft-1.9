@@ -21,15 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class Easing
 {
-	@Override
-	public void preInit()
-	{
+	// The original idea was to have one for floats and another for doubles
+	// EasingTemplate<float> and EasingTemplate<double> respectively
+	// Unfortunately, java's type system sucks, so we'll have to settle for
+	// doubles, or I duplicate code...
+	public static EasingTemplate d = new EasingTemplate();
 
-	}
+	private Easing() {}
 }

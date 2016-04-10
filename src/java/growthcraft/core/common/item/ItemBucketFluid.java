@@ -23,27 +23,69 @@
  */
 package growthcraft.core.common.item;
 
-import java.util.List;
+import growthcraft.core.util.UnitFormatter;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GrcItemBlockBase extends ItemBlock
+/**
+ * Generic fluid bucket code
+ */
+public class ItemBucketFluid extends GrcItemBucketBase implements IFluidItem
 {
-	public GrcItemBlockBase(Block block)
+	private Fluid fluid;
+	private int index;
+	// Used to override the fluid color
+	private int color = -1;
+
+	public ItemBucketFluid(Block block, Fluid flu, CreativeTabs creativeTab)
 	{
 		super(block);
+		setContainerItem(Items.bucket);
+		setCreativeTab(creativeTab);
+		this.fluid = flu;
+	}
+
+	@Override
+	public Fluid getFluid(ItemStack _stack)
+	{
+		return fluid;
+	}
+
+	public ItemBucketFluid setColor(int c)
+	{
+		this.color = c;
+		return this;
+	}
+
+	public int getColor(ItemStack stack)
+	{
+		if (color != -1) return color;
+		return getFluid(stack).getColor();
+	}
+
+	@Override
+	public String getItemStackDisplayName(ItemStack stack)
+	{
+		return UnitFormatter.fluidBucketName(getFluid(stack));
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean advanced)
+	public int getColorFromItemStack(ItemStack stack, int pass)
 	{
-		super.addInformation(stack, player, list, advanced);
-		GrcItemBase.addDescription(this, stack, player, list, advanced);
+		return pass == 1 ? getColor(stack) : 0xFFFFFF;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean requiresMultipleRenderPasses()
+	{
+		return true;
 	}
 }

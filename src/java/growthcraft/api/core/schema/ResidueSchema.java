@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.schema;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.cellar.common.Residue;
+
+import net.minecraft.item.ItemStack;
+
+public class ResidueSchema extends ItemKeySchema
 {
-	@Override
-	public void preInit()
-	{
+	public float pomace;
 
+	public ResidueSchema(@Nonnull Residue res)
+	{
+		super(res.residueItem);
+		this.pomace = res.pomaceRate;
+	}
+
+	public ResidueSchema()
+	{
+		super();
+		this.pomace = 1.0f;
+	}
+
+	public Residue asResidue()
+	{
+		final ItemStack itemStack = asStack();
+		if (itemStack == null) return null;
+		return new Residue(itemStack, pomace);
+	}
+
+	@Override
+	public String toString()
+	{
+		return String.format("%s~(pomace: %.4f)", super.toString(), pomace);
 	}
 }

@@ -21,15 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.vines;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.log.ILoggable;
+
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+public interface IVineDropRegistry extends ILoggable
 {
-	@Override
-	public void preInit()
-	{
+	void addVineEntry(@Nonnull IVineEntry entry);
+	void addVineEntry(@Nonnull Block block, int meta);
+	boolean isVine(@Nullable Block block, int meta);
 
-	}
+	void addDropEntry(@Nonnull VineDropEntry entry);
+	void addDropEntry(@Nonnull ItemStack item, int weight);
+	boolean hasVineDrops();
+	ItemStack getVineDropItem(@Nonnull World world);
 }

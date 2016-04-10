@@ -21,15 +21,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.item;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.item.ItemStack;
+
+public interface IItemStackComparator
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	boolean equals(@Nonnull ItemStack expected, @Nonnull ItemStack actual);
 }

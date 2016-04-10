@@ -21,15 +21,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.fluids;
 
-import growthcraft.api.core.GrcFluid;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class FluidFormatString
 {
-	@Override
-	public void preInit()
-	{
+	private FluidFormatString() {}
 
+	public static String format(FluidStack stack)
+	{
+		if (stack != null)
+		{
+			final Fluid fluid = stack.getFluid();
+			String fluidName = "NULL";
+			if (fluid != null) fluidName = fluid.getName();
+			return String.format("FluidStack(fluid: %s, amount: %d)", fluidName, stack.amount);
+		}
+		return "FluidStack(NULL)";
 	}
 }

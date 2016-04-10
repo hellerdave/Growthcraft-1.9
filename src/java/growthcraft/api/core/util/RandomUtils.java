@@ -21,15 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.List;
+import java.util.Random;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class RandomUtils
 {
-	@Override
-	public void preInit()
-	{
+	private RandomUtils() {}
 
+	public static boolean thresh(Random random, float thresh)
+	{
+		return random.nextInt(2000) < (int)(thresh * 2000);
+	}
+
+	public static int range(Random random, int min, int max)
+	{
+		return min + random.nextInt(max - min);
+	}
+
+	public static <T> T sample(Random random, List<T> list)
+	{
+		return list.get(random.nextInt(list.size()));
 	}
 }

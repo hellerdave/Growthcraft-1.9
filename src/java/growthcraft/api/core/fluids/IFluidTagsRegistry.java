@@ -21,15 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.fluids;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.List;
+import java.util.Collection;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.log.ILoggable;
+
+public interface IFluidTagsRegistry extends ILoggable
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	void registerTag(@Nonnull FluidTag tag);
+	FluidTag createTag(@Nonnull String name);
+	Collection<String> getNames();
+	Collection<FluidTag> getTags();
+	FluidTag findTag(@Nonnull String name);
+	List<FluidTag> expandTagNames(@Nonnull List<String> tagNames);
 }

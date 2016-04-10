@@ -21,15 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class Triplet<TLeft, TCenter, TRight>
 {
-	@Override
-	public void preInit()
-	{
+	public TLeft left;
+	public TCenter center;
+	public TRight right;
 
+	public Triplet(TLeft l, TCenter c, TRight r)
+	{
+		this.left = l;
+		this.center = c;
+		this.right = r;
 	}
 }

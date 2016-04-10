@@ -23,13 +23,23 @@
  */
 package growthcraft.core.common.module;
 
-import growthcraft.api.core.GrcFluid;
+import growthcraft.core.GrowthCraftCore;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.item.ItemStack;
+import net.minecraft.init.Items;
+
+public class GrcCoreRecipes extends GrcModuleRecipesBase
 {
-	@Override
-	public void preInit()
+	public void init()
 	{
-
+		final ItemStack salt = GrowthCraftCore.proxy.items.salt.asStack();
+		final ItemStack salt2 = GrowthCraftCore.proxy.items.salt.asStack(2);
+		final ItemStack salt6 = GrowthCraftCore.proxy.items.salt.asStack(6);
+		final ItemStack saltBottle = GrowthCraftCore.proxy.items.saltBottle.asStack();
+		final ItemStack saltBucket = GrowthCraftCore.proxy.items.saltBucket.asStack();
+		addShapelessRecipe(salt2, saltBottle);
+		addShapelessRecipe(salt6, saltBucket);
+		addShapelessRecipe(saltBottle, salt, salt, Items.glass_bottle);
+		addShapelessRecipe(saltBucket, salt, salt, salt, salt, salt, salt, Items.bucket);
 	}
 }

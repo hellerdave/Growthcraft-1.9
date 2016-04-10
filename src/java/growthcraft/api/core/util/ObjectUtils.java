@@ -21,15 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
-
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class ObjectUtils
 {
-	@Override
-	public void preInit()
-	{
+	private ObjectUtils() {}
 
+	@SuppressWarnings({"unchecked"})
+	public static <T> T maybe(T ...objects)
+	{
+		for (T object : objects)
+		{
+			if (object != null) return object;
+		}
+		return null;
 	}
 }

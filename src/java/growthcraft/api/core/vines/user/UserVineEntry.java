@@ -21,15 +21,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.vines.user;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.item.ItemKey;
+import growthcraft.api.core.schema.BlockKeySchema;
+import growthcraft.api.core.schema.ICommentable;
+import growthcraft.api.core.util.BlockKey;
+
+import net.minecraft.block.Block;
+
+public class UserVineEntry implements ICommentable
 {
-	@Override
-	public void preInit()
-	{
+	public String comment;
+	public BlockKeySchema block;
 
+	public UserVineEntry(@Nonnull BlockKeySchema schema)
+	{
+		this.block = schema;
+		this.comment = block.getComment();
+	}
+
+	public UserVineEntry(@Nonnull Block pBlock, int meta)
+	{
+		this(new BlockKeySchema(pBlock, meta));
+	}
+
+	public UserVineEntry(@Nonnull Block pBlock)
+	{
+		this(pBlock, ItemKey.WILDCARD_VALUE);
+	}
+
+	public UserVineEntry(@Nonnull BlockKey pBlockKey)
+	{
+		this(new BlockKeySchema(pBlockKey));
+	}
+
+	public UserVineEntry()
+	{
+		this.comment = "";
+	}
+
+	@Override
+	public String getComment()
+	{
+		return comment;
+	}
+
+	@Override
+	public void setComment(String com)
+	{
+		this.comment = com;
 	}
 }

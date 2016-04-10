@@ -21,15 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.fluids;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.i18n.GrcI18n;
+
+public class FluidTag
 {
-	@Override
-	public void preInit()
-	{
+	private final String name;
 
+	public FluidTag(@Nonnull String n)
+	{
+		this.name = n;
+	}
+
+	public String getName()
+	{
+		return name;
+	}
+
+	public String getUnlocalizedName()
+	{
+		return "grc.fluids.tag." + getName();
+	}
+
+	public String getLocalizedName()
+	{
+		return GrcI18n.translate(getUnlocalizedName());
+	}
+
+	public String toString()
+	{
+		return getName();
 	}
 }

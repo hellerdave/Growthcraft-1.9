@@ -21,15 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.common;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public interface IClassRegistry<T>
 {
-	@Override
-	public void preInit()
-	{
+	/**
+	 * @param name - Name to register it under
+	 * @param klass - A class
+	 * @return factory registry
+	 */
+	void register(@Nonnull String name, @Nonnull Class<? extends T> klass);
 
-	}
+	/**
+	 * @param name - name of factory class to fetch
+	 * @return factory class
+	 */
+	Class<? extends T> getClass(@Nonnull String name);
+
+	/**
+	 * @param klass - factory class to fetch name for
+	 * @return name
+	 */
+	String getName(@Nonnull Class<?> klass);
 }

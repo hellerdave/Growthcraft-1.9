@@ -21,15 +21,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.item;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nonnull;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.item.ItemStack;
+
+public class CommonItemStackComparator implements IItemStackComparator
 {
-	@Override
-	public void preInit()
+	/**
+	 * @param expected - the expected item stack
+	 * @param actual - the given or actual item stack being checked
+	 * @return true, the stacks are equal, or has a wildcard, false otherwise
+	 */
+	public boolean equals(@Nonnull ItemStack expected, @Nonnull ItemStack actual)
 	{
-
+		return actual.getItem() == expected.getItem() &&
+			(expected.getItemDamage() == ItemKey.WILDCARD_VALUE ||
+				actual.getItemDamage() == expected.getItemDamage());
 	}
 }

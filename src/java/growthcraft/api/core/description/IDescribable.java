@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 IceDragon200
+ * Copyright (c) 2015 IceDragon200
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,15 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.description;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.List;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+/**
+ * Interface for objects that can provide a Description
+ */
+public interface IDescribable
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	/**
+	 * This method is normally called by items when they want a description
+	 * of their objects, feel free to push as many lines as you need into
+	 * the list to describe the object
+	 *
+	 * @param list - list to add description lines to
+	 */
+	void getDescription(List<String> list);
 }

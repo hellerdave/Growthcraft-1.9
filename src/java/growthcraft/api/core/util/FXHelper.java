@@ -21,15 +21,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.util;
 
-import growthcraft.api.core.GrcFluid;
+import growthcraft.api.core.client.particle.EntityFXDropParticle;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+public class FXHelper
 {
-	@Override
-	public void preInit()
-	{
+	private FXHelper() {}
 
+	@SideOnly(Side.CLIENT)
+	public static void dropParticle(World world, double px, double py, double pz, int color)
+	{
+		final float particleRed = ((color >> 16) & 0xFF) / 255.0f;
+		final float particleGreen = ((color >> 8) & 0xFF) / 255.0f;
+		final float particleBlue = (color & 0xFF) / 255.0f;
+		final EntityFX fx = new EntityFXDropParticle(world, px, py, pz, particleRed, particleGreen, particleBlue);
+		FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
 	}
 }

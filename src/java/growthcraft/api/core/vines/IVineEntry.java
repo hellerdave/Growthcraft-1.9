@@ -21,15 +21,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.vines;
 
-import growthcraft.api.core.GrcFluid;
+import javax.annotation.Nullable;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import net.minecraft.block.Block;
+
+public interface IVineEntry
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	Block getBlock();
+	int getMetadata();
+	boolean matches(@Nullable Block block, int meta);
 }

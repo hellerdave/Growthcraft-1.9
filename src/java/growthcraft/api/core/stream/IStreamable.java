@@ -21,15 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.stream;
 
-import growthcraft.api.core.GrcFluid;
+import io.netty.buffer.ByteBuf;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public interface IStreamable
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	boolean readFromStream(ByteBuf stream);
+	boolean writeToStream(ByteBuf stream);
 }

@@ -24,7 +24,24 @@
 package growthcraft.core.client;
 
 import growthcraft.core.common.CommonProxy;
+import growthcraft.core.util.ModelResourceLocationFactory;
 
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
+	public final ModelResourceLocationFactory modelResLoc = new ModelResourceLocationFactory("growthcraft-core");
+
+	@Override
+	protected void doPreInit()
+	{
+		ModelLoader.setCustomModelResourceLocation(blocks.rope.getItem(), 0, modelResLoc.create("rope_block", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(items.rope.getItem(), 0, modelResLoc.create("rope"));
+		ModelLoader.setCustomModelResourceLocation(items.salt.getItem(), 0, modelResLoc.create("salt"));
+		ModelLoader.setCustomModelResourceLocation(items.saltBucket.getItem(), 0, modelResLoc.create("bucket_salt"));
+		ModelLoader.setCustomModelResourceLocation(items.saltBottle.getItem(), 0, modelResLoc.create("bottle_salt"));
+	}
 }

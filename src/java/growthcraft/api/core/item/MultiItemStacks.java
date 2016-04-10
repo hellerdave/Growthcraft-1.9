@@ -21,15 +21,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core.item;
 
-import growthcraft.api.core.GrcFluid;
+import java.util.Arrays;
+import java.util.List;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+import growthcraft.api.core.definition.IMultiItemStacks;
+
+import net.minecraft.item.ItemStack;
+
+public class MultiItemStacks implements IMultiItemStacks
 {
-	@Override
-	public void preInit()
-	{
+	private List<ItemStack> itemStacks;
 
+	public MultiItemStacks(@Nonnull ItemStack... stacks)
+	{
+		this.itemStacks = Arrays.asList(stacks);
+	}
+
+	@Override
+	public boolean isEmpty()
+	{
+		return itemStacks.isEmpty();
+	}
+
+	@Override
+	public int getStackSize()
+	{
+		for (ItemStack stack : itemStacks)
+		{
+			return stack.stackSize;
+		}
+		return 0;
+	}
+
+	@Override
+	public List<ItemStack> getItemStacks()
+	{
+		return itemStacks;
+	}
+
+	@Override
+	public boolean containsItemStack(@Nullable ItemStack stack)
+	{
+		if (!ItemTest.isValid(stack)) return false;
+		for (ItemStack content : getItemStacks())
+		{
+			if (content.isItemEqual(stack)) return true;
+		}
+		return false;
 	}
 }

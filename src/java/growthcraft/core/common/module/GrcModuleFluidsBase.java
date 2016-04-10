@@ -23,13 +23,10 @@
  */
 package growthcraft.core.common.module;
 
-import growthcraft.api.core.GrcFluid;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public class GrcModuleFluidsBase extends GrcModuleBase
 {
-	@Override
-	public void preInit()
-	{
 
-	}
 }

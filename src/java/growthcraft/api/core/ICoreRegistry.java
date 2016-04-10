@@ -21,15 +21,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package growthcraft.core.common.module;
+package growthcraft.api.core;
 
-import growthcraft.api.core.GrcFluid;
+import growthcraft.api.core.fluids.IFluidDictionary;
+import growthcraft.api.core.fluids.IFluidTagsRegistry;
+import growthcraft.api.core.effect.IEffectRegistry;
+import growthcraft.api.core.effect.IPotionEffectFactoryRegistry;
+import growthcraft.api.core.log.ILoggable;
+import growthcraft.api.core.vines.IVineDropRegistry;
 
-public class GrcCoreFluids extends GrcModuleFluidsBase
+public interface ICoreRegistry extends ILoggable
 {
-	@Override
-	public void preInit()
-	{
-
-	}
+	IFluidTagsRegistry fluidTags();
+	IFluidDictionary fluidDictionary();
+	IEffectRegistry getEffectsRegistry();
+	IVineDropRegistry vineDrops();
+	IPotionEffectFactoryRegistry getPotionEffectFactoryRegistry();
 }
