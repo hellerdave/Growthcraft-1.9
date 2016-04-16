@@ -23,7 +23,6 @@
  */
 package growthcraft.core;
 
-import growthcraft.api.core.GrcCoreApi;
 import growthcraft.core.common.CommonProxy;
 import growthcraft.core.lib.GrcCoreConst;
 import growthcraft.core.util.FluidFactory;
