@@ -1,6 +1,7 @@
 package growthcraft.fishtrap;
 
 import growthcraft.fishtrap.common.CommonProxy;
+import growthcraft.core.lib.GrcCoreConst;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -13,19 +14,18 @@ import net.minecraftforge.fml.common.Mod;
 @Mod(
 	modid = GrowthCraftFishTrap.MOD_ID,
 	name = GrowthCraftFishTrap.MOD_NAME,
-	version = GrowthCraftFishTrap.MOD_VERSION,
-	dependencies = "required-after:Growthcraft@@VERSION@"
+	version = GrcCoreConst.VERSION,
+	dependencies = "required-after:GrowthCraft-Core@[" + GrcCoreConst.VERSION + ",)"
 )
 public class GrowthCraftFishTrap
 {
-	public static final String MOD_ID = "Growthcraft|Fishtrap";
+	public static final String MOD_ID = "Growthcraft-Fishtrap";
 	public static final String MOD_NAME = "Growthcraft Fishtrap";
-	public static final String MOD_VERSION = "@VERSION@";
 
-	@Instance
+	@Instance(MOD_ID)
 	public static GrowthCraftFishTrap instance = new GrowthCraftFishTrap();
 	
-	@SidedProxy(clientSide="growthcraft.client.ClientProxy", serverSide="growthcraft.client.ServerProxy")
+	@SidedProxy(clientSide="growthcraft.fishtrap.client.ClientProxy", serverSide="growthcraft.fishtrap.server.ServerProxy")
 	public static CommonProxy proxy;
 
 	@EventHandler

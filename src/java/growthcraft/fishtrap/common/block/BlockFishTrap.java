@@ -13,7 +13,7 @@ public class BlockFishTrap extends Block
 		setTickRandomly(true);
 		setHardness(0.4F);
 		setStepSound(soundTypeWood);
-		setUnlocalizedName("fishTrap");
+		setUnlocalizedName("fishtrap");
 		setCreativeTab(GrowthCraftCore.creativeTab);
 	}
 }
