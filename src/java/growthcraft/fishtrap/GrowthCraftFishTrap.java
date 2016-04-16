@@ -1,17 +1,14 @@
 package growthcraft.fishtrap;
 
-import growthcraft.core.common.definition.BlockDefinition;
-import growthcraft.fishtrap.common.block.BlockFishTrap;
+import growthcraft.fishtrap.common.CommonProxy;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraft.init.Items;
 
 @Mod(
 	modid = GrowthCraftFishTrap.MOD_ID,
@@ -25,38 +22,30 @@ public class GrowthCraftFishTrap
 	public static final String MOD_NAME = "Growthcraft Fishtrap";
 	public static final String MOD_VERSION = "@VERSION@";
 
-	@Instance(MOD_ID)
-	public static GrowthCraftFishTrap instance;
+	@Instance
+	public static GrowthCraftFishTrap instance = new GrowthCraftFishTrap();
 	
-	public static BlockDefinition fishTrap;
+	@SidedProxy(clientSide="growthcraft.client.ClientProxy", serverSide="growthcraft.client.ServerProxy")
+	public static CommonProxy proxy;
 
 	@EventHandler
-	public void preload(FMLPreInitializationEvent event)
+	public void preInit(FMLPreInitializationEvent event)
 	{
-		fishTrap = new BlockDefinition(new BlockFishTrap());
-
-		registerBlocks();
-	}
-
-	private void registerBlocks()
-	{
-		GameRegistry.registerBlock(fishTrap.getBlock(), "grc.fishTrap");
-	}
-
-	private void registerRecipes()
-	{
-		GameRegistry.addRecipe(new ShapedOreRecipe(fishTrap.asStack(1), "ACA", "CBC", "ACA", 'A', "plankWood", 'B', Items.lead, 'C', Items.string));
+		// Blocks + Items registered in common proxy
+		proxy.preInit(event);
 	}
 
 	@EventHandler
-	public void load(FMLInitializationEvent event)
+	public void init(FMLInitializationEvent event)
 	{
-		registerRecipes();
+		// Recipes registed in common proxy
+		proxy.init(event);
 	}
 
 	@EventHandler
-	public void postload(FMLPostInitializationEvent event)
+	public void postInit(FMLPostInitializationEvent event)
 	{
+		proxy.postInit(event);
 	}
 }
 
