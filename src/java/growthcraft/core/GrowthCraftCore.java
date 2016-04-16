@@ -64,7 +64,7 @@ public class GrowthCraftCore
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		FluidFactory.instance().setLogger(proxy.logger);
-		GrcCoreApi.instance().setLogger(proxy.logger);
+		//GrcCoreApi.instance().setLogger(proxy.logger);
 		proxy.preInit(event);
 	}
 
