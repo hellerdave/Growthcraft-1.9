@@ -30,7 +30,6 @@ import growthcraft.core.GrowthCraftCore;
 import growthcraft.core.util.FluidFactory;
 
 import net.minecraft.util.ResourceLocation;
-
 public class GrcCoreFluids extends GrcModuleFluidsBase
 {
 	public FluidFactory.FluidDetails saltWater;

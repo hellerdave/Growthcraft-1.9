@@ -23,7 +23,6 @@
  */
 package growthcraft.core;
 
-import growthcraft.api.core.GrcCoreApi;
 import growthcraft.core.common.CommonProxy;
 import growthcraft.core.lib.GrcCoreConst;
 import growthcraft.core.util.FluidFactory;
@@ -64,7 +63,7 @@ public class GrowthCraftCore
 	public void preInit(FMLPreInitializationEvent event)
 	{
 		FluidFactory.instance().setLogger(proxy.logger);
-		GrcCoreApi.instance().setLogger(proxy.logger);
+		//GrcCoreApi.instance().setLogger(proxy.logger);
 		proxy.preInit(event);
 	}
 
