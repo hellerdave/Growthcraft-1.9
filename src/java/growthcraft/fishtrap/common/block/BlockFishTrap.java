@@ -1,11 +1,11 @@
 package growthcraft.fishtrap.common.block;
 
 import growthcraft.core.GrowthCraftCore;
+import growthcraft.core.common.block.GrcBlockBase;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.block.Block;
 
-public class BlockFishTrap extends Block
+public class BlockFishTrap extends GrcBlockBase
 {
 	public BlockFishTrap()
 	{
