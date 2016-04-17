@@ -129,7 +129,7 @@ javadoc {
     failOnError = false
 }
 
-
+/*
 // add a javadoc jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = "javadoc"
@@ -168,3 +168,4 @@ jar {
 
 // make sure all of these happen when we run build
 build.dependsOn sourceJar, javadocJar, deobfJar, apiJar
+*/
