@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 )
 public class GrowthCraftFishTrap
 {
-	public static final String MOD_ID = "Growthcraft-Fishtrap";
+	public static final String MOD_ID = "GrowthCraft-Fishtrap";
 	public static final String MOD_NAME = "Growthcraft Fishtrap";
 
 	@Instance(MOD_ID)
