@@ -129,7 +129,7 @@ javadoc {
     failOnError = false
 }
 
-/*
+
 // add a javadoc jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = "javadoc"
@@ -164,7 +164,7 @@ jar {
     into("thaumcraft/api") {
         from project.thaumcraftApi + "/LICENSE"
     }
-}*/
+}
 
 // make sure all of these happen when we run build
-//build.dependsOn sourceJar, javadocJar, deobfJar, apiJar
+build.dependsOn sourceJar, javadocJar, deobfJar, apiJar
