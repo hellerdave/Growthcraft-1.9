@@ -35,7 +35,6 @@ import growthcraft.api.core.item.MultiItemStacks;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry.UniqueIdentifier;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ItemStackSchema implements IItemStackFactory, IItemStackListProvider, IValidatable, ICommentable
@@ -57,9 +56,9 @@ public class ItemStackSchema implements IItemStackFactory, IItemStackListProvide
 
 	public ItemStackSchema(@Nonnull ItemStack stack)
 	{
-		final UniqueIdentifier uuid = GameRegistry.findUniqueIdentifierFor(stack.getItem());
-		this.mod_id = uuid.modId;
-		this.name = uuid.name;
+		final String registryName = stack.getItem().getRegistryName();
+		this.mod_id = registryName.split(":")[0];
+		this.name = registryName.split(":")[1];
 		this.amount = stack.stackSize;
 		this.meta = stack.getItemDamage();
 		this.comment = stack.getDisplayName();
