@@ -54,14 +54,12 @@ public class GrowthCraftFishTrap
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		// Blocks + Items registered in common proxy
 		proxy.preInit(event);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		// Recipes registed in common proxy
 		proxy.init(event);
 	}
 
