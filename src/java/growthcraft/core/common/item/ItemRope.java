@@ -30,7 +30,6 @@ public class ItemRope extends GrcItemBase
 	public ItemRope()
 	{
 		super();
-		setUnlocalizedName("rope");
 		setCreativeTab(GrowthCraftCore.creativeTab);
 	}
 }

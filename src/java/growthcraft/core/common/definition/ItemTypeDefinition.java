@@ -62,6 +62,8 @@ public class ItemTypeDefinition<T extends Item> extends ObjectDefinition<T> impl
 	 */
 	public void register(String name)
 	{
-		GameRegistry.registerItem(getItem(), name);
+		getItem().setUnlocalizedName(name);
+		getItem().setRegistryName(name);
+		GameRegistry.registerItem(getItem());
 	}
 }

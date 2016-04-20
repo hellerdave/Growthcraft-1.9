@@ -30,7 +30,6 @@ public class ItemSalt extends GrcItemBase
 	public ItemSalt()
 	{
 		super();
-		setUnlocalizedName("salt");
 		setCreativeTab(GrowthCraftCore.creativeTab);
 	}
 }

@@ -213,7 +213,7 @@ public class FluidFactory implements ILoggable
 
 	public FluidDetails create(Fluid fluid, int features)
 	{
-		logger.debug("Creating new FluidDetails for fluid=%s features=%08s", fluid, Integer.toBinaryString(features));
+		logger.debug("Creating new FluidDetails for fluid=%s features=%8s", fluid, Integer.toBinaryString(features));
 
 		final FluidDetails details = new FluidDetails();
 		details.fluid = new FluidDefinition(fluid);
