@@ -106,7 +106,9 @@ public class BlockTypeDefinition<T extends Block> extends ObjectDefinition<T> im
 	 */
 	public void register(String name, Class<? extends ItemBlock> itemClass)
 	{
-		GameRegistry.registerBlock(getBlock(), itemClass, name);
+		getBlock().setUnlocalizedName(name);
+		getBlock().setRegistryName(name);
+		GameRegistry.registerBlock(getBlock(), itemClass);
 	}
 
 	/**
@@ -114,6 +116,8 @@ public class BlockTypeDefinition<T extends Block> extends ObjectDefinition<T> im
 	 */
 	public void register(String name)
 	{
-		GameRegistry.registerBlock(getBlock(), name);
+		getBlock().setUnlocalizedName(name);
+		getBlock().setRegistryName(name);
+		GameRegistry.registerBlock(getBlock());
 	}
 }

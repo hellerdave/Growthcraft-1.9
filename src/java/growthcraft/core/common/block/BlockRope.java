@@ -30,6 +30,5 @@ public class BlockRope extends GrcBlockBase
 	public BlockRope()
 	{
 		super(Material.cloth);
-		setUnlocalizedName("rope_block");
 	}
 }
