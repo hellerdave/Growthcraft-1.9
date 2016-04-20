@@ -37,6 +37,7 @@ public class BlockFishTrap extends GrcBlockBase
 		setHardness(0.4F);
 		setStepSound(soundTypeWood);
 		setUnlocalizedName("fishtrap");
+		setRegistryName("fishtrap");
 		setCreativeTab(GrowthCraftCore.creativeTab);
 	}
 }

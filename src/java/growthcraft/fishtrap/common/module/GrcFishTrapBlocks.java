@@ -27,6 +27,9 @@ import growthcraft.fishtrap.common.block.BlockFishTrap;
 import growthcraft.core.common.module.GrcModuleBase;
 import growthcraft.core.common.definition.BlockDefinition;
 
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+
 public class GrcFishTrapBlocks extends GrcModuleBase
 {
 	public BlockDefinition fishTrap;
@@ -47,6 +50,11 @@ public class GrcFishTrapBlocks extends GrcModuleBase
 	public void init()
 	{
 		registerRecipes();
+	}
+
+	public void registerModels()
+	{
+		ModelLoader.setCustomModelResourceLocation(fishTrap.getItem(), 0, new ModelResourceLocation(fishTrap.getBlock().getRegistryName(), "inventory"));
 	}
 
 	public void registerRecipes()
