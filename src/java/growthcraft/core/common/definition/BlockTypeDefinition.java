@@ -116,21 +116,4 @@ public class BlockTypeDefinition<T extends Block> extends ObjectDefinition<T> im
 	{
 		GameRegistry.registerBlock(getBlock(), name);
 	}
-
-	/**
-	 * Registers the item using it's unlocalized name and a supplied ItemBlock class
-	 * @param itemClass - item class to register with
-	 */
-	public void register(Class<? extends ItemBlock> itemClass)
-	{
-		GameRegistry.registerBlock(getBlock(), itemClass, getBlock().getUnlocalizedName().substring(5));
-	}
-
-	/**
-	 * Registers the item using it's unlocalized name
-	 */
-	public void register()
-	{
-		register(getBlock().getUnlocalizedName().substring(5));
-	}
 }

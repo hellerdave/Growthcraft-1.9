@@ -17,9 +17,9 @@ public class GrcFishTrapBlocks extends GrcModuleBase
 	@Override
 	public void register()
 	{
-		fishTrap.register();
+		fishTrap.register("fish_trap");
 	}
-	
+
 	@Override
 	public void init()
 	{

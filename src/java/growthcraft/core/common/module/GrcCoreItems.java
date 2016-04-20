@@ -48,9 +48,9 @@ public class GrcCoreItems extends GrcModuleBase
 	@Override
 	public void register()
 	{
-		rope.register();
-		salt.register();
-		saltBucket.register();
-		saltBottle.register();
+		rope.register("rope");
+		salt.register("salt");
+		saltBucket.register("salt_bucket");
+		saltBottle.register("salt_bottle");
 	}
 }

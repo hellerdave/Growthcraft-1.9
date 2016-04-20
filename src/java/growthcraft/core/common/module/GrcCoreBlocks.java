@@ -39,6 +39,6 @@ public class GrcCoreBlocks extends GrcModuleBase
 	@Override
 	public void register()
 	{
-		rope.register();
+		rope.register("rope_block");
 	}
 }
