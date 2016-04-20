@@ -31,7 +31,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.client.model.ModelLoader;
 
 public class BlockTypeDefinition<T extends Block> extends ObjectDefinition<T> implements ISubItemStackFactory
 {
@@ -119,5 +121,10 @@ public class BlockTypeDefinition<T extends Block> extends ObjectDefinition<T> im
 		getBlock().setUnlocalizedName(name);
 		getBlock().setRegistryName(name);
 		GameRegistry.registerBlock(getBlock());
+	}
+
+	public void registerModel()
+	{
+		ModelLoader.setCustomModelResourceLocation(getItem(), 0, new ModelResourceLocation(getBlock().getRegistryName(), "inventory"));
 	}
 }

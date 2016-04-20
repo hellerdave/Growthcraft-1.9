@@ -27,8 +27,9 @@ import growthcraft.fishtrap.common.block.BlockFishTrap;
 import growthcraft.core.common.module.GrcModuleBase;
 import growthcraft.core.common.definition.BlockDefinition;
 
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraft.init.Items;
 
 public class GrcFishTrapBlocks extends GrcModuleBase
 {
@@ -52,13 +53,16 @@ public class GrcFishTrapBlocks extends GrcModuleBase
 		registerRecipes();
 	}
 
+	/*
+	 * Called from Client Proxy
+	 */
 	public void registerModels()
 	{
-		ModelLoader.setCustomModelResourceLocation(fishTrap.getItem(), 0, new ModelResourceLocation(fishTrap.getBlock().getRegistryName(), "inventory"));
+		fishTrap.registerModel();
 	}
 
 	public void registerRecipes()
 	{
-		//GameRegistry.addRecipe(new ShapedOreRecipe(fishTrap.asStack(1), "ACA", "CBC", "ACA", 'A', "plankWood", 'B', Items.lead, 'C', Items.string));
+		GameRegistry.addRecipe(new ShapedOreRecipe(fishTrap.asStack(1), "ACA", "CBC", "ACA", 'A', "plankWood", 'B', Items.lead, 'C', Items.string));
 	}
 }
