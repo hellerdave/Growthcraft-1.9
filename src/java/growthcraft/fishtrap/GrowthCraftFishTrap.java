@@ -45,6 +45,9 @@ public class GrowthCraftFishTrap
 	public static final String MOD_ID = "GrowthCraft-Fishtrap";
 	public static final String MOD_NAME = "Growthcraft Fishtrap";
 
+	public final GrcFishTrapBlocks blocks = new GrcFishTrapBlocks();
+	private final ModuleContainer modules = new ModuleContainer();
+
 	@Instance(MOD_ID)
 	public static GrowthCraftFishTrap instance = new GrowthCraftFishTrap();
 	
@@ -54,18 +57,24 @@ public class GrowthCraftFishTrap
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		modules.add(blocks);
+		modules.preInit();
+		modules.register();
+		
 		proxy.preInit(event);
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		modules.init();
 		proxy.init(event);
 	}
 
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		modules.postInit();
 		proxy.postInit(event);
 	}
 }
