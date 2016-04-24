@@ -24,7 +24,11 @@
 package growthcraft.fishtrap;
 
 import growthcraft.fishtrap.common.CommonProxy;
+import growthcraft.fishtrap.common.module.GrcFishTrapBlocks;
 import growthcraft.core.lib.GrcCoreConst;
+import growthcraft.api.core.log.GrcLogger;
+import growthcraft.api.core.module.ModuleContainer;
+import growthcraft.api.core.log.ILogger;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -45,8 +49,7 @@ public class GrowthCraftFishTrap
 	public static final String MOD_ID = "GrowthCraft-Fishtrap";
 	public static final String MOD_NAME = "Growthcraft Fishtrap";
 
-	public final GrcFishTrapBlocks blocks = new GrcFishTrapBlocks();
-	private final ModuleContainer modules = new ModuleContainer();
+	public static final GrcFishTrapBlocks blocks = new GrcFishTrapBlocks();
 
 	@Instance(MOD_ID)
 	public static GrowthCraftFishTrap instance = new GrowthCraftFishTrap();
@@ -54,9 +57,21 @@ public class GrowthCraftFishTrap
 	@SidedProxy(clientSide="growthcraft.fishtrap.client.ClientProxy", serverSide="growthcraft.fishtrap.server.ServerProxy")
 	public static CommonProxy proxy;
 
+	private final ModuleContainer modules = new ModuleContainer();
+	private final GrcFishTrapConfig config = new GrcFishTrapConfig();
+	private final ILogger logger = new GrcLogger(MOD_ID);
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		config.setLogger(logger);
+		config.load(event.getModConfigurationDirectory(), "growthcraft/fishtrap.conf");
+		
+		if (config.debugEnabled) 
+		{
+			modules.setLogger(logger);
+		}
+
 		modules.add(blocks);
 		modules.preInit();
 		modules.register();

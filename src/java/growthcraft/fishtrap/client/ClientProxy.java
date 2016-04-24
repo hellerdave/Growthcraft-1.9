@@ -24,6 +24,7 @@
 package growthcraft.fishtrap.client;
 
 import growthcraft.fishtrap.common.CommonProxy;
+import growthcraft.fishtrap.GrowthCraftFishTrap;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -35,7 +36,7 @@ public class ClientProxy extends CommonProxy
 	public void preInit(FMLPreInitializationEvent event) 
 	{
 		super.preInit(event);
-		blocks.registerModels();
+		GrowthCraftFishTrap.blocks.registerModels();
 	}
 
 	@Override
