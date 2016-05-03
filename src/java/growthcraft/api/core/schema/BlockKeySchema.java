@@ -45,9 +45,8 @@ public class BlockKeySchema implements ICommentable, IValidatable
 
 	public BlockKeySchema(Block block, int pmeta)
 	{
-		final String registryName = block.getRegistryName();
-		this.mod_id = registryName.split(":")[0];
-		this.name = registryName.split(":")[1];
+		this.mod_id = block.getRegistryName().getResourceDomain();
+		this.name = block.getRegistryName().getResourcePath();
 		this.meta = pmeta;
 		this.comment = block.getLocalizedName();
 	}

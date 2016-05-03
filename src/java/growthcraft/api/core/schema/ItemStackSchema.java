@@ -56,9 +56,8 @@ public class ItemStackSchema implements IItemStackFactory, IItemStackListProvide
 
 	public ItemStackSchema(@Nonnull ItemStack stack)
 	{
-		final String registryName = stack.getItem().getRegistryName();
-		this.mod_id = registryName.split(":")[0];
-		this.name = registryName.split(":")[1];
+		this.mod_id = stack.getItem().getRegistryName().getResourceDomain();
+		this.name = stack.getItem().getRegistryName().getResourcePath();
 		this.amount = stack.stackSize;
 		this.meta = stack.getItemDamage();
 		this.comment = stack.getDisplayName();

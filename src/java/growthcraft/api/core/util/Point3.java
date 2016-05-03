@@ -23,7 +23,7 @@
  */
 package growthcraft.api.core.util;
 
-import net.minecraft.util.Vec3i;
+import net.minecraft.util.math.Vec3i;
 
 /**
  * To mimic Forestry's internal Vect class

@@ -29,7 +29,7 @@ import growthcraft.core.eventhandler.EventHandlerBucketFill.IBucketEntry;
 import growthcraft.core.GrowthCraftCore;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;

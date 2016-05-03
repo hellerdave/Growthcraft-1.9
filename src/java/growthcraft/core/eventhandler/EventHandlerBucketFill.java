@@ -34,11 +34,10 @@ import growthcraft.api.core.log.NullLogger;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.FillBucketEvent;
-import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class EventHandlerBucketFill implements ILoggable
@@ -122,7 +121,7 @@ public class EventHandlerBucketFill implements ILoggable
 		return null;
 	}
 
-	private ItemStack fillCustomBucket(@Nonnull World world, @Nonnull MovingObjectPosition pos)
+	private ItemStack fillCustomBucket(@Nonnull World world, @Nonnull RayTraceResult pos)
 	{
 		return fillCustomBucket(world, pos.getBlockPos());
 	}
@@ -130,9 +129,8 @@ public class EventHandlerBucketFill implements ILoggable
 	@SubscribeEvent
 	public void onBucketFill(FillBucketEvent event)
 	{
-		final ItemStack result = fillCustomBucket(event.world, event.target);
+		final ItemStack result = fillCustomBucket(event.getWorld(), event.getTarget());
 		if (result == null) return;
-		event.result = result.copy();
-		event.setResult(Event.Result.ALLOW);
+		event.setFilledBucket(result);
 	}
 }

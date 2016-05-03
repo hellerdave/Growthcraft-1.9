@@ -31,8 +31,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Generic fluid bucket code
@@ -68,18 +66,5 @@ public class ItemBucketFluid extends GrcItemBucketBase implements IFluidItem
 	{
 		if (color != -1) return color;
 		return getFluid(stack).getColor();
-	}
-
-	//@Override
-	//public String getItemStackDisplayName(ItemStack stack)
-	//{
-	//	//return UnitFormatter.fluidBucketName(getFluid(stack));
-	//}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int pass)
-	{
-		return pass == 1 ? getColor(stack) : 0xFFFFFF;
 	}
 }

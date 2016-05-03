@@ -25,7 +25,7 @@ package growthcraft.api.core.i18n;
 
 /**
  * An abstraction for translating, use this instead of Minecraft's I18n or
- * Forge's StatCollector and a fallback NullTranslator,
+ * Forge's I18n and a fallback NullTranslator,
  * this will hide the difference between them.
  */
 public class GrcI18n
@@ -43,7 +43,7 @@ public class GrcI18n
 	{
 		if (translator == null)
 		{
-			// Defaults to the StatCollector version
+			// Defaults to the I18n version
 			setTranslator(I18nTranslator.INSTANCE);
 		}
 		return translator;

@@ -35,7 +35,6 @@ public class BlockFishTrap extends GrcBlockBase
 		super(Material.wood);
 		setTickRandomly(true);
 		setHardness(0.4F);
-		setStepSound(soundTypeWood);
 		setCreativeTab(GrowthCraftCore.creativeTab);
 	}
 }

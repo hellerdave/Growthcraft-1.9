@@ -28,8 +28,6 @@ import growthcraft.api.core.item.IFluidItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * Generic fluid bottle for growthcraft fluids
@@ -63,12 +61,5 @@ public class ItemBottleFluid extends GrcItemBase implements IFluidItem
 	{
 		if (color != -1) return color;
 		return getFluid(stack).getColor();
-	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public int getColorFromItemStack(ItemStack stack, int pass)
-	{
-		return pass == 0 ? getColor(stack) : 0xFFFFFF;
 	}
 }

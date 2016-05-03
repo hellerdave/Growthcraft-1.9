@@ -5,8 +5,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.EntityFX;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.MathHelper;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.IFluidBlock;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,9 +33,9 @@ public class EntityFXDropParticle extends EntityFX
 		this.particleGravity = 0.06F;
 		this.bobTimer = 40;
 		this.particleMaxAge = (int) (64.0D / (Math.random() * 0.8D + 0.2D));
-		this.motionX = 0.0D;
-		this.motionY = 0.0D;
-		this.motionZ = 0.0D;
+		this.xSpeed = 0.0D;
+		this.ySpeed = 0.0D;
+		this.zSpeed = 0.0D;
 	}
 
 	/**
@@ -48,13 +48,13 @@ public class EntityFXDropParticle extends EntityFX
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 
-		this.motionY -= this.particleGravity;
+		this.ySpeed -= this.particleGravity;
 
 		if (this.bobTimer-- > 0)
 		{
-			this.motionX *= 0.02D;
-			this.motionY *= 0.02D;
-			this.motionZ *= 0.02D;
+			this.xSpeed *= 0.02D;
+			this.ySpeed *= 0.02D;
+			this.zSpeed *= 0.02D;
 			setParticleTextureIndex(113);
 		}
 		else
@@ -62,29 +62,28 @@ public class EntityFXDropParticle extends EntityFX
 			setParticleTextureIndex(112);
 		}
 
-		moveEntity(this.motionX, this.motionY, this.motionZ);
-		this.motionX *= 0.9800000190734863D;
-		this.motionY *= 0.9800000190734863D;
-		this.motionZ *= 0.9800000190734863D;
+		moveEntity(this.xSpeed, this.ySpeed, this.zSpeed);
+		this.xSpeed *= 0.9800000190734863D;
+		this.ySpeed *= 0.9800000190734863D;
+		this.zSpeed *= 0.9800000190734863D;
 
 		if (this.particleMaxAge-- <= 0)
 		{
-			setDead();
+			setExpired();
 		}
 
-		if (this.onGround)
+		if (this.isCollided)
 		{
 			setParticleTextureIndex(114);
 
-			this.motionX *= 0.699999988079071D;
-			this.motionZ *= 0.699999988079071D;
+			this.xSpeed *= 0.699999988079071D;
+			this.zSpeed *= 0.699999988079071D;
 		}
 
 		final BlockPos pos = new BlockPos(posX, posY, posZ);
 		final IBlockState state = worldObj.getBlockState(pos);
+		final Material material = state.getMaterial();
 		final Block block = state.getBlock();
-
-		final Material material = block.getMaterial();
 
 		if ((material.isLiquid() || material.isSolid()) && block instanceof IFluidBlock)
 		{
@@ -93,7 +92,7 @@ public class EntityFXDropParticle extends EntityFX
 
 			if (this.posY < d0)
 			{
-				setDead();
+				setExpired();
 			}
 		}
 	}
