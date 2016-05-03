@@ -30,6 +30,7 @@ import growthcraft.api.core.effect.EffectChance;
 import growthcraft.api.core.effect.EffectList;
 import growthcraft.api.core.effect.EffectNull;
 import growthcraft.api.core.effect.EffectRandomList;
+import growthcraft.api.core.effect.EffectRemovePotionEffect;
 import growthcraft.api.core.effect.EffectWeightedRandomList;
 import growthcraft.api.core.effect.IEffect;
 import growthcraft.api.core.effect.IEffectRegistry;
@@ -49,6 +50,7 @@ public class EffectRegistry extends AbstractClassRegistry<IEffect> implements IE
 		register("list", EffectList.class);
 		register("null", EffectNull.class);
 		register("random_list", EffectRandomList.class);
+		register("remove_potion_effect", EffectRemovePotionEffect.class);
 		register("weighted_random_list", EffectWeightedRandomList.class);
 		return this;
 	}
