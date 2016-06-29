@@ -4,3 +4,9 @@
 /run
 *.swp
 *.swo
+.classpath
+.project
+.settings/org.eclipse.jdt.core.prefs
+Growthcraft-1.9_Client.launch
+Growthcraft-1.9_Server.launch
+eclipse/
