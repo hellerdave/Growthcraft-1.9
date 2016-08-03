@@ -4,7 +4,7 @@ package growthcraft.api.core.client.particle;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class EntityFXDropParticle extends EntityFX
+public class EntityFXDropParticle extends Particle
 {
 	/**
 	 * The height of the current bob
@@ -33,9 +33,9 @@ public class EntityFXDropParticle extends EntityFX
 		this.particleGravity = 0.06F;
 		this.bobTimer = 40;
 		this.particleMaxAge = (int) (64.0D / (Math.random() * 0.8D + 0.2D));
-		this.xSpeed = 0.0D;
-		this.ySpeed = 0.0D;
-		this.zSpeed = 0.0D;
+		this.motionX = 0.0D;
+		this.motionY = 0.0D;
+		this.motionZ = 0.0D;
 	}
 
 	/**
@@ -48,13 +48,13 @@ public class EntityFXDropParticle extends EntityFX
 		this.prevPosY = this.posY;
 		this.prevPosZ = this.posZ;
 
-		this.ySpeed -= this.particleGravity;
+		this.motionY -= this.particleGravity;
 
 		if (this.bobTimer-- > 0)
 		{
-			this.xSpeed *= 0.02D;
-			this.ySpeed *= 0.02D;
-			this.zSpeed *= 0.02D;
+			this.motionX *= 0.02D;
+			this.motionY *= 0.02D;
+			this.motionZ *= 0.02D;
 			setParticleTextureIndex(113);
 		}
 		else
@@ -62,10 +62,10 @@ public class EntityFXDropParticle extends EntityFX
 			setParticleTextureIndex(112);
 		}
 
-		moveEntity(this.xSpeed, this.ySpeed, this.zSpeed);
-		this.xSpeed *= 0.9800000190734863D;
-		this.ySpeed *= 0.9800000190734863D;
-		this.zSpeed *= 0.9800000190734863D;
+		moveEntity(this.motionX, this.motionY, this.motionZ);
+		this.motionX *= 0.9800000190734863D;
+		this.motionY *= 0.9800000190734863D;
+		this.motionZ *= 0.9800000190734863D;
 
 		if (this.particleMaxAge-- <= 0)
 		{
@@ -76,8 +76,8 @@ public class EntityFXDropParticle extends EntityFX
 		{
 			setParticleTextureIndex(114);
 
-			this.xSpeed *= 0.699999988079071D;
-			this.zSpeed *= 0.699999988079071D;
+			this.motionX *= 0.699999988079071D;
+			this.motionZ *= 0.699999988079071D;
 		}
 
 		final BlockPos pos = new BlockPos(posX, posY, posZ);

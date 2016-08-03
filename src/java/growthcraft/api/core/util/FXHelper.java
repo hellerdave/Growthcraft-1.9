@@ -25,7 +25,7 @@ package growthcraft.api.core.util;
 
 import growthcraft.api.core.client.particle.EntityFXDropParticle;
 
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -41,7 +41,7 @@ public class FXHelper
 		final float particleRed = ((color >> 16) & 0xFF) / 255.0f;
 		final float particleGreen = ((color >> 8) & 0xFF) / 255.0f;
 		final float particleBlue = (color & 0xFF) / 255.0f;
-		final EntityFX fx = new EntityFXDropParticle(world, px, py, pz, particleRed, particleGreen, particleBlue);
+		final Particle fx = new EntityFXDropParticle(world, px, py, pz, particleRed, particleGreen, particleBlue);
 		FMLClientHandler.instance().getClient().effectRenderer.addEffect(fx);
 	}
 }

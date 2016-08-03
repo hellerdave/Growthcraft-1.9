@@ -55,7 +55,7 @@ public class GrowthCraftCore
 		@SideOnly(Side.CLIENT)
 		public Item getTabIconItem()
 		{
-			return Item.getItemFromBlock(Blocks.sapling);
+			return Item.getItemFromBlock(Blocks.SAPLING);
 		}
 	};
 

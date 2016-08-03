@@ -32,7 +32,7 @@ public class ItemBottleSalt extends GrcItemBase
 	public ItemBottleSalt()
 	{
 		super();
-		setContainerItem(Items.glass_bottle);
+		setContainerItem(Items.GLASS_BOTTLE);
 		setCreativeTab(GrowthCraftCore.creativeTab);
 	}
 }

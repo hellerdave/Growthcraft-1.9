@@ -63,6 +63,6 @@ public class GrcFishTrapBlocks extends GrcModuleBase
 
 	public void registerRecipes()
 	{
-		GameRegistry.addRecipe(new ShapedOreRecipe(fishTrap.asStack(1), "ACA", "CBC", "ACA", 'A', "plankWood", 'B', Items.lead, 'C', Items.string));
+		GameRegistry.addRecipe(new ShapedOreRecipe(fishTrap.asStack(1), "ACA", "CBC", "ACA", 'A', "plankWood", 'B', Items.LEAD, 'C', Items.STRING));
 	}
 }

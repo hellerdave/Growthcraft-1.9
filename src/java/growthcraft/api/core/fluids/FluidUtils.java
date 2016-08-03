@@ -50,12 +50,12 @@ public class FluidUtils
 			final BlockFluidBase bfb = (BlockFluidBase)block;
 			return bfb.drain(world, pos, doDrain);
 		}
-		else if (block == Blocks.lava)
+		else if (block == Blocks.LAVA)
 		{
 			if (doDrain) world.setBlockToAir(pos);
 			return new FluidStack(FluidRegistry.LAVA, FluidContainerRegistry.BUCKET_VOLUME);
 		}
-		else if (block == Blocks.water)
+		else if (block == Blocks.WATER)
 		{
 			if (doDrain) world.setBlockToAir(pos);
 			return new FluidStack(FluidRegistry.WATER, FluidContainerRegistry.BUCKET_VOLUME);

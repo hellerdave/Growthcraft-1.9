@@ -39,7 +39,7 @@ public class GrcCoreRecipes extends GrcModuleRecipesBase
 		final ItemStack saltBucket = GrowthCraftCore.proxy.items.saltBucket.asStack();
 		addShapelessRecipe(salt2, saltBottle);
 		addShapelessRecipe(salt6, saltBucket);
-		addShapelessRecipe(saltBottle, salt, salt, Items.glass_bottle);
-		addShapelessRecipe(saltBucket, salt, salt, salt, salt, salt, salt, Items.bucket);
+		addShapelessRecipe(saltBottle, salt, salt, Items.GLASS_BOTTLE);
+		addShapelessRecipe(saltBucket, salt, salt, salt, salt, salt, salt, Items.BUCKET);
 	}
 }

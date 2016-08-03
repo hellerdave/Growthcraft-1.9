@@ -41,7 +41,7 @@ public class ItemFoodBottleFluid extends GrcItemFoodBase implements IFluidItem
 	public ItemFoodBottleFluid(Fluid flu, int healAmount, float saturation, boolean isWolfFavouriteFood)
 	{
 		super(healAmount, saturation, isWolfFavouriteFood);
-		setContainerItem(Items.glass_bottle);
+		setContainerItem(Items.GLASS_BOTTLE);
 		this.fluid = flu;
 	}
 

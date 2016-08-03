@@ -32,7 +32,7 @@ public class BlockFishTrap extends GrcBlockBase
 {
 	public BlockFishTrap()
 	{
-		super(Material.wood);
+		super(Material.WOOD);
 		setTickRandomly(true);
 		setHardness(0.4F);
 		setCreativeTab(GrowthCraftCore.creativeTab);

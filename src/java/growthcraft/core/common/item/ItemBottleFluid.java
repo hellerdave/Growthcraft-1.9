@@ -41,7 +41,7 @@ public class ItemBottleFluid extends GrcItemBase implements IFluidItem
 	public ItemBottleFluid(Fluid flu)
 	{
 		super();
-		setContainerItem(Items.glass_bottle);
+		setContainerItem(Items.GLASS_BOTTLE);
 		this.fluid = flu;
 	}
 

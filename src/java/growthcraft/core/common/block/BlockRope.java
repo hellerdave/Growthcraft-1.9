@@ -29,6 +29,6 @@ public class BlockRope extends GrcBlockBase
 {
 	public BlockRope()
 	{
-		super(Material.cloth);
+		super(Material.CLOTH);
 	}
 }
