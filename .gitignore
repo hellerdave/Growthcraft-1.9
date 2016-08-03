@@ -10,3 +10,6 @@
 Growthcraft-1.9_Client.launch
 Growthcraft-1.9_Server.launch
 eclipse/
+bin/assets/
+bin/mcmod.info
+bin/grccore_logo.png
