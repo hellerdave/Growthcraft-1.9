@@ -30,7 +30,7 @@ import growthcraft.core.GrowthCraftCore;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
 
@@ -47,7 +47,7 @@ public class SaltBucketEntry implements IBucketEntry
 	{
 		//if (world.getBlockMetadata(pos.getX(), pos.getY(), pos.getZ()) == 0)
 		//{
-			final BiomeGenBase biome = world.getBiomeGenForCoords(pos);
+			final Biome biome = world.getBiomeGenForCoords(pos);
 			if (BiomeDictionary.isBiomeOfType(biome, BiomeDictionary.Type.OCEAN))
 			{
 				return true;
